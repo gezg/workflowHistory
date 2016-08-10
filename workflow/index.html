@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>流程历史</title>
+</head>
+<body>
+	<div>
+		<div id="workflowHistoryContainer"></div>
+	</div>
+	<script type="text/javascript" src="raphael.min.js"></script>
+	<script type="text/javascript" src="workflowHistory.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			//初始化
+			new WorkflowHistory('workflowHistoryContainer');
+		}
+	</script>
+</body>
+</html>

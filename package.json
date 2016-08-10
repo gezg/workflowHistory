@@ -1,0 +1,22 @@
+{
+  "name": "workflowHistory",
+  "version": "1.0.0",
+  "description": "嘉诚信息-流程设计器-流程历程查看插件",
+  "dependencies": {
+    "gulp-connect": "^5.0.0",
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gezg/workflowHistory.git"
+  },
+  "author": "戈志刚",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gezg/workflowHistory/issues"
+  },
+  "homepage": "https://github.com/gezg/workflowHistory#readme"
+}
