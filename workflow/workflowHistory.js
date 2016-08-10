@@ -3,9 +3,9 @@
 	 *  流程历史实现类
 	 */
 	function WorkflowHistory(element){
+		//缓存所有节点数据
 		this.nodes = [];
-		this.seqs  = [];
-		this.subNodes = [];
+		//初始化
 		this.init(element);
 	}
 
@@ -276,12 +276,15 @@
 			//箭头底边中心点
 			var bottomCenterY = targetY-arrowLength* Math.sin(angle);
 	 	    var bottomCenterX = targetX-arrowLength* Math.cos(angle);
+	 	    //箭头左坐标点
 	 	    var bottomAngleAX =  bottomCenterX-arrowHeight/2 * Math.sin(angle);
 	 	    var bottomAngleAY =  bottomCenterY+arrowHeight/2 * Math.cos(angle);
+	 	    //箭头右坐标点
 	 	    var bottomAngleBX =  bottomCenterX+arrowHeight/2 * Math.sin(angle);
 	 	    var bottomAngleBY =  bottomCenterY-arrowHeight/2 * Math.cos(angle);
-			//箭头坐标
-	 		var arrowPath = 'M '+targetX+' '+targetY+' L '+bottomAngleAX+' '+bottomAngleAY
+			//箭头坐标拼接
+	 		var arrowPath = 'M '+targetX+' '+targetY
+	 		+' L '+bottomAngleAX+' '+bottomAngleAY
 	 		+' L '+bottomAngleBX+' '+bottomAngleBY+'z';
 	 		//绘制箭头
 	 		var arrow = paper.path(arrowPath);
