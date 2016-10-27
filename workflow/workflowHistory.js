@@ -13,6 +13,7 @@
 	WorkflowHistory.HEIGHT= 58;				//节点的高度
 	WorkflowHistory.CONTAINERWIDTH = 1200;	//绘制面板容器的宽度
 	WorkflowHistory.CONTAINERHEIGHT = 800;	//绘制面板容器的高度
+	WorkflowHistory.statusColors = ['' ,'#fbd136' ,'#d3edd4'];
 
 	WorkflowHistory.prototype = {
 		init : function(element){
@@ -71,11 +72,9 @@
 				);
 			//绘制节点下方文字
 			this.nodeText(paper ,shape.bounds.upperLeft.x ,shape.bounds.upperLeft.y ,shape.properties.name);
-			//判断当前流程走到哪一个节点
-			if(shape.properties.name === '用户3'){
-				//添加颜色蒙层
-				this.execute(paper ,shape);
-			}
+
+			//判断当前流程走到哪一个节点 - 添加颜色蒙层
+			this.execute(paper ,shape);
 			return node;
 		},
 		//创建子流程
@@ -158,30 +157,17 @@
 			//s.node.offsetWidth
 		},
 		lineText : function(paper ,shape){
-			// var x = endX - startX;
-			// var y = endY - startY;
-			// var angle;
-			// if(x!=0){
-			// 	angle = Math.atan(y/x);
-			// } else {
-			// 	if(y>0){
-			// 		angle = Math.PI/2;
-			// 	} else {
-			// 		angle = Math.PI/2*3;
-			// 	}
-			// }
-			// //路由的角度
+			//路由的角度
 			// var degree = angle / Math.PI * 180;
 			// shape.textPath[0] 是文字选择的角度
-			//var rotate  = shape.textPath[0].replace(/rotate\(|\)/g,'').split(' ');
+			var rotate  = shape.textPath[0].replace(/rotate\(|\)/g,'').split(' ');
 
-			paper.text(shape.textPath[1] ,shape.textPath[2] ,shape.properties.name);
+			var text = paper.text(shape.textPath[1] ,shape.textPath[2] ,shape.properties.name);
 
 			// var tX = shape.textPath[1] - rotate[1];
 			// var tY = shape.textPath[2] - rotate[2];
 
-			//text.transform('t'+tX+' '+tY+'r'+rotate[0]);
-			//text.transform('r'+rotate[0]);
+			text.transform('r'+rotate[0]);
 		},
 		//路由的颜色
 		lineColor : function(ele,isAow){
@@ -291,29 +277,40 @@
 	 		//箭头渲染颜色
 	 		this.lineColor(arrow , true);
 		},
+		/**
+		 * [节点覆盖蒙层]
+		 * @param  {[Number]} 
+		 *    status = 1   未办理节点
+		 *    status = 2   待办节点
+		 *    status = 3   已办节点
+		 */
 		execute : function(paper ,shape){
-			var position = shape.bounds.upperLeft;
-			var radius = function(){
-				var rd = 10;
-				if(shape.stencil.id == 'StartNoneEvent' || shape.stencil.id == 'EndNoneEvent'){
-					rd = 22;
-				}
-				return rd;
-			}();
-			//绘制蒙层
-			var matte = paper.rect(
-				position.x+(radius == 10?1:4), 
-				position.y+(radius == 10?1:4), 
-				WorkflowHistory.WIDTH-(radius == 10?2:8), 
-				WorkflowHistory.HEIGHT-(radius == 10?2:8), 
-				radius
-			);
-			//为蒙层添加颜色
-			matte.attr({
-				'fill':'#e8f37a',
-				'stroke' : 'none',
-				'fill-opacity' : .3
-			});
+			var status = parseInt(shape.properties.status ,10);
+			if(status > 1){
+				console.log(status);
+				var position = shape.bounds.upperLeft;
+				var radius = function(){
+					var rd = 10;
+					if(shape.stencil.id == 'StartNoneEvent' || shape.stencil.id == 'EndNoneEvent'){
+						rd = 22;
+					}
+					return rd;
+				}();
+				//绘制蒙层
+				var matte = paper.rect(
+					position.x+(radius == 10?1:4), 
+					position.y+(radius == 10?1:4), 
+					WorkflowHistory.WIDTH-(radius == 10?2:8), 
+					WorkflowHistory.HEIGHT-(radius == 10?2:8), 
+					radius
+				);
+				//为蒙层添加颜色
+				matte.attr({
+					'fill': WorkflowHistory.statusColors[status - 1],
+					'stroke' : 'none',
+					'fill-opacity' : .3
+				});
+			}
 		}
 	}
 	//暴露给外部
