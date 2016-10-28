@@ -2,27 +2,45 @@
 	/**
 	 *  流程历史实现类
 	 */
-	function WorkflowHistory(element){
+	function WorkflowHistory(option){
 		//缓存所有节点数据
 		this.nodes = [];
 		//初始化
-		this.init(element);
+		this.init(option);
 	}
 
 	WorkflowHistory.WIDTH = 58;				//节点的宽度
 	WorkflowHistory.HEIGHT= 58;				//节点的高度
-	WorkflowHistory.CONTAINERWIDTH = 1200;	//绘制面板容器的宽度
+	WorkflowHistory.CONTAINERWIDTH = '100%';	//绘制面板容器的宽度
 	WorkflowHistory.CONTAINERHEIGHT = 800;	//绘制面板容器的高度
 	WorkflowHistory.statusColors = ['' ,'#fbd136' ,'#d3edd4'];
 
 	WorkflowHistory.prototype = {
-		init : function(element){
-			this.getData(element);
+		init : function(option){
+			this.option = option;
+			if(option.width){
+				WorkflowHistory.CONTAINERWIDTH = option.width;
+			}
+
+			if(option.height){
+				WorkflowHistory.CONTAINERHEIGHT = option.height;
+			}
+
+			if(!option.dataUrl){
+				option.dataUrl = './data_line.json';
+			}
+
+			if(option.statusColors){
+				WorkflowHistory.statusColors = option.statusColors;
+			}
+
+			this.getData(option.el);
 		},
 		//获取数据
 		getData : function(element){
-			this.http({
-				url: './data_line.json',
+			var self = this;
+			self.http({
+				url: self.option.dataUrl,
 			    type: "GET",
 			    success: function (json) {
 					json = eval('(' + json + ')');
@@ -287,7 +305,6 @@
 		execute : function(paper ,shape){
 			var status = parseInt(shape.properties.status ,10);
 			if(status > 1){
-				console.log(status);
 				var position = shape.bounds.upperLeft;
 				var radius = function(){
 					var rd = 10;
@@ -314,5 +331,7 @@
 		}
 	}
 	//暴露给外部
-	window.WorkflowHistory = WorkflowHistory;
+	window.createHistory = function(option){
+		new WorkflowHistory(option);
+	};
 })();
