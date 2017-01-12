@@ -27,7 +27,7 @@
 			}
 
 			if(!option.dataUrl){
-				option.dataUrl = './data_line.json';
+				option.dataUrl = './data_line_5.json';
 			}
 
 			if(option.statusColors){
@@ -42,8 +42,10 @@
 			self.http({
 				url: self.option.dataUrl,
 			    type: "GET",
+			    dataType: 'json',
 			    success: function (json) {
-					json = eval('(' + json + ')');
+					json = JSON.parse(json);
+
 			    	this.createCanvas(element ,json.childShapes);
 			    }
 			});
@@ -153,17 +155,22 @@
 						diffX = dockers[i].x,diffY = dockers[i].y;
 					}
 				};
-				//截取获得路由绘制终点的坐标
-				var ds = shape.line.split('L');
-				//路由的位置
-				var position = ds[ds.length-1].split(' ');
-				//绘制箭头
-				this.arrow(paper ,diffX ,diffY ,Number(position[0]) ,Number(position[1]));
-				//绘制路由线
-				var line = paper.path(shape.line);
-				this.lineColor(line);
-				//绘制路由的文字
-				this.lineText(paper ,shape);
+				try{
+					//截取获得路由绘制终点的坐标
+					var ds = shape.line.split('L');
+					//路由的位置
+					var position = ds[ds.length-1].split(' ');
+					//绘制箭头
+					this.arrow(paper ,diffX ,diffY ,Number(position[0]) ,Number(position[1]) ,shape);
+					//绘制路由线
+					var line = paper.path(shape.line);
+					//绘制路由线颜色
+					this.lineColor(line);
+					//绘制路由的文字
+					this.lineText(paper ,shape);
+				}catch(e){
+					throw new Error('路由节点数据异常! ' + e.message);
+				}
 			}
 		},
 		//节点下的文字
@@ -175,16 +182,8 @@
 			//s.node.offsetWidth
 		},
 		lineText : function(paper ,shape){
-			//路由的角度
-			// var degree = angle / Math.PI * 180;
-			// shape.textPath[0] 是文字选择的角度
 			var rotate  = shape.textPath[0].replace(/rotate\(|\)/g,'').split(' ');
-
 			var text = paper.text(shape.textPath[1] ,shape.textPath[2] ,shape.properties.name);
-
-			// var tX = shape.textPath[1] - rotate[1];
-			// var tY = shape.textPath[2] - rotate[2];
-
 			text.transform('r'+rotate[0]);
 		},
 		//路由的颜色
@@ -260,7 +259,7 @@
 			}
 		},
 		//绘制箭头函数
-		arrow : function(paper ,sourceX ,sourceY ,targetX ,targetY){
+		arrow : function(paper ,sourceX ,sourceY ,targetX ,targetY ,shape){
 			var x = targetX - sourceX;
 			var y = targetY - sourceY;
 			var angle;
@@ -273,27 +272,32 @@
 					angle = Math.PI/2*3;
 				}
 			}
+
 			//箭头宽
-			var arrowLength =11;
+			var arrowLength = 11;
 			//箭头高
 			var arrowHeight = 8;
+
 			//箭头底边中心点
-			var bottomCenterY = targetY-arrowLength* Math.sin(angle);
-	 	    var bottomCenterX = targetX-arrowLength* Math.cos(angle);
-	 	    //箭头左坐标点
-	 	    var bottomAngleAX =  bottomCenterX-arrowHeight/2 * Math.sin(angle);
-	 	    var bottomAngleAY =  bottomCenterY+arrowHeight/2 * Math.cos(angle);
-	 	    //箭头右坐标点
-	 	    var bottomAngleBX =  bottomCenterX+arrowHeight/2 * Math.sin(angle);
-	 	    var bottomAngleBY =  bottomCenterY-arrowHeight/2 * Math.cos(angle);
+			var bottomCenterY = targetY - arrowLength * Math.sin(angle);
+			var bottomCenterX = targetX - arrowLength * Math.cos(angle);
+			if (x < 0) {
+			    bottomCenterY = targetY + arrowLength * Math.sin(angle);
+			    bottomCenterX = targetX + arrowLength * Math.cos(angle);
+			}
+			//箭头左坐标点
+			var bottomAngleAX = bottomCenterX - arrowHeight / 2 * Math.sin(angle);
+			var bottomAngleAY = bottomCenterY + arrowHeight / 2 * Math.cos(angle);
+			//箭头右坐标点
+			var bottomAngleBX = bottomCenterX + arrowHeight / 2 * Math.sin(angle);
+			var bottomAngleBY = bottomCenterY - arrowHeight / 2 * Math.cos(angle);
 			//箭头坐标拼接
-	 		var arrowPath = 'M '+targetX+' '+targetY
-	 		+' L '+bottomAngleAX+' '+bottomAngleAY
-	 		+' L '+bottomAngleBX+' '+bottomAngleBY+'z';
-	 		//绘制箭头
-	 		var arrow = paper.path(arrowPath);
-	 		//箭头渲染颜色
-	 		this.lineColor(arrow , true);
+			var arrowPath = 'M ' + targetX + ' ' + targetY + ' L ' + bottomAngleAX + ' ' + bottomAngleAY + ' L ' + bottomAngleBX + ' ' + bottomAngleBY + 'z';
+			//绘制箭头
+			var arrow = paper.path(arrowPath);
+			//箭头渲染颜色
+			this.lineColor(arrow, true);
+
 		},
 		/**
 		 * [节点覆盖蒙层]
