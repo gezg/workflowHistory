@@ -11,21 +11,29 @@
 
 	WorkflowHistory.prototype = {
 		init : function(option){
+			if(!option.el){
+				throw new Error('必须填写el参数,不能以根节点或body做容器!!! ');
+			}
 			this.option = this.util.extend({
-				el: 'body',
 				dataUrl: './data_line.json',
-				canvasWidth: '100%',	//绘制面板容器的宽度
-				canvasHeight: 800,		//绘制面板容器的高度
+				canvasWidth: 1200,		//绘制面板容器的宽度
+				canvasHeight: 1050,		//绘制面板容器的高度
 				width: 58,				//节点的宽度
 				height: 58,				//节点的高度
 				statusColors: ['' ,'#fbd136' ,'#d3edd4'], //流程状态的颜色
-				skin: 'designer',		//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
+				skin: '2',				//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
 				glowColor: '#ea9999',	//待办节点发光颜色, 基础颜色是statusColors[1]
 				glowTime: 1000,			//蒙层光环单次执行闪烁时间
-				glowWidth: 20			//蒙层光环宽度
+				glowWidth: 20,			//蒙层光环宽度
+				imgRootPath: ''			//添加图片根路径
 			} ,option);
 
-			this.getData(this.option.el);
+			if(this.option.datas){
+				this.createCanvas(this.option.el ,this.option.datas.childShapes);
+			}else{
+
+				this.getData(this.option.el);
+			}
 		},
 		//获取数据
 		getData : function(element){
@@ -75,7 +83,7 @@
 			}
 
 			var node = paper.image(
-					'./image/'+ opt.skin +'/'+imgName+'.png', 
+					opt.imgRootPath + './image/'+ opt.skin +'/'+imgName+'.png', 
 					position.x, 
 					position.y, 
 					opt.width, 
@@ -380,7 +388,5 @@
 		}
 	}
 	//暴露给外部
-	window.createHistory = function(option){
-		return new WorkflowHistory(option);
-	};
+	window.WorkflowHistory = WorkflowHistory;
 })();
