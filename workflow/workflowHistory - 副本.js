@@ -2,38 +2,34 @@
 	/**
 	 *  流程历史实现类
 	 */
-	function WorkflowHistory(option){
+	function WorkflowHistory(element,json){
 		//缓存所有节点数据
 		this.nodes = [];
 		//初始化
-		this.init(option);
+		this.init(element,json);
 	}
 
-	WorkflowHistory.prototype = {
-		init : function(option){
-			this.option = this.util.extend({
-				el: 'body',
-				dataUrl: './data_line.json',
-				canvasWidth: '100%',	//绘制面板容器的宽度
-				canvasHeight: 800,		//绘制面板容器的高度
-				width: 58,				//节点的宽度
-				height: 58,				//节点的高度
-				statusColors: ['' ,'#fbd136' ,'#d3edd4'], //流程状态的颜色
-				skin: 'designer',			//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
-				glow: '#ea9999'			//待办节点发光颜色, 基础颜色是statusColors[1]
-			} ,option);
+	WorkflowHistory.WIDTH = 58;				//节点的宽度
+	WorkflowHistory.HEIGHT= 58;				//节点的高度
+	WorkflowHistory.CONTAINERWIDTH = 1200;	//绘制面板容器的宽度
+	WorkflowHistory.CONTAINERHEIGHT = 1050;	//绘制面板容器的高度
+	WorkflowHistory.statusColors = ['' ,'#fbd136' ,'#d3edd4'];
 
-			this.getData(this.option.el);
+	WorkflowHistory.prototype = {
+		init : function(element,json){
+			json = json;
+			WorkflowHistory.CONTAINERWIDTH = Math.max(WorkflowHistory.CONTAINERWIDTH, json.bounds.lowerRight.x);
+			WorkflowHistory.CONTAINERHEIGHT = Math.max(WorkflowHistory.CONTAINERHEIGHT, json.bounds.lowerRight.y);
+			this.createCanvas(element ,json.childShapes);
 		},
 		//获取数据
 		getData : function(element){
-			var self = this;
-			self.http({
-				url: self.option.dataUrl,
+			this.http({
+				url: getRootPath() + '/js/com/jc/workflow/history/data_line.json',
 			    type: "GET",
 			    success: function (json) {
-					var jsonObj = JSON.parse(json);
-			    	this.createCanvas(element ,jsonObj.childShapes);
+					json = eval('(' + json + ')');
+			    	this.createCanvas(element ,json.childShapes);
 			    }
 			});
 		},
@@ -53,9 +49,8 @@
 		},
 		//创建画布
 		createCanvas : function(ele ,datas){
-			var opt = this.option,
 			//创建一个画布
-			paper = Raphael(ele, opt.canvasWidth, opt.canvasHeight);
+			var paper = Raphael(ele, WorkflowHistory.CONTAINERWIDTH, WorkflowHistory.CONTAINERHEIGHT);
 			//先解析一遍数据,因为绘制路由时候会用到多有的流程节点数据
 			this.parseData(datas);
 			//开始 绘制
@@ -63,8 +58,7 @@
 		},
 		//创建图片节点
 		createImgNode : function(paper ,shape , imgName ,isSub ,superNode){
-			var opt = this.option,
-			position = shape.bounds.upperLeft;
+			var position = shape.bounds.upperLeft;
 			//判断是不是子流程内的节点,如果是加上子流程的offset
 			//因为子流程的的节点位置数据都是相对子流程的
 			if(isSub){
@@ -73,11 +67,11 @@
 			}
 
 			var node = paper.image(
-					'./image/'+ opt.skin +'/'+imgName+'.png', 
+					getRootPath() + '/js/com/jc/workflow/history/image/'+imgName+'.png',
 					position.x, 
 					position.y, 
-					opt.width, 
-					opt.height
+					WorkflowHistory.WIDTH, 
+					WorkflowHistory.HEIGHT
 				);
 			//绘制节点下方文字
 			this.nodeText(paper ,shape.bounds.upperLeft.x ,shape.bounds.upperLeft.y ,shape.properties.name);
@@ -144,22 +138,17 @@
 						diffX = dockers[i].x,diffY = dockers[i].y;
 					}
 				};
-				try{
-					//截取获得路由绘制终点的坐标
-					var ds = shape.line.split('L');
-					//路由的位置
-					var position = ds[ds.length-1].split(' ');
-					//绘制箭头
-					this.arrow(paper ,diffX ,diffY ,Number(position[0]) ,Number(position[1]) ,shape);
-					//绘制路由线
-					var line = paper.path(shape.line);
-					//绘制路由线颜色
-					this.lineColor(line);
-					//绘制路由的文字
-					this.lineText(paper ,shape ,diffX ,diffY ,Number(position[0]) ,Number(position[1]));
-				}catch(e){
-					throw new Error('路由节点数据异常! ' + e.message);
-				}
+				//截取获得路由绘制终点的坐标
+				var ds = shape.line.split('L');
+				//路由的位置
+				var position = ds[ds.length-1].split(' ');
+				//绘制箭头
+				this.arrow(paper ,diffX ,diffY ,Number(position[0]) ,Number(position[1]));
+				//绘制路由线
+				var line = paper.path(shape.line);
+				this.lineColor(line);
+				//绘制路由的文字
+				this.lineText(paper ,shape);
 			}
 		},
 		//节点下的文字
@@ -167,29 +156,21 @@
 			var x = leftX + 28;
 			var y = leftY + 68;
 			var s = paper.text(x ,y ,text);
+			//获取已创建text节点的宽度
+			//s.node.offsetWidth
 		},
-		lineText : function(paper ,shape ,sourceX ,sourceY ,targetX ,targetY){
-			var textX = Number(shape.textPath[1]),
-				textY = Number(shape.textPath[2]),
-				rotate  = shape.textPath[0].replace(/rotate\(|\)/g,'').split(' ');
+		lineText : function(paper ,shape){
+			//路由的角度
+			// var degree = angle / Math.PI * 180;
+			// shape.textPath[0] 是文字选择的角度
+			var rotate  = shape.textPath[0].replace(/rotate\(|\)/g,'').split(' ');
 
+			var text = paper.text(shape.textPath[1] ,shape.textPath[2] ,shape.properties.name);
 
-			var x = targetX - sourceX,
-				y = targetY - sourceY,
-				angle;
-			if(x!=0){
-				angle = Math.atan(y/x);
-			} else {
-				if(y>0){
-					angle = Math.PI/2;
-				} else {
-					angle = Math.PI/2*3;
-				}
-			}
-			// console.log(shape.properties.name);
-			// console.log(angle);
-			var text = paper.text(textX ,textY ,shape.properties.name);
-			text.transform('r'+rotate[0]);
+			// var tX = shape.textPath[1] - rotate[1];
+			// var tY = shape.textPath[2] - rotate[2];
+			text.rotate(rotate[0],shape.textPath[1],shape.textPath[2]);
+			//text.transform('r'+rotate[0]);
 		},
 		//路由的颜色
 		lineColor : function(ele,isAow){
@@ -264,7 +245,7 @@
 			}
 		},
 		//绘制箭头函数
-		arrow : function(paper ,sourceX ,sourceY ,targetX ,targetY ,shape){
+		arrow : function(paper ,sourceX ,sourceY ,targetX ,targetY){
 			var x = targetX - sourceX;
 			var y = targetY - sourceY;
 			var angle;
@@ -278,28 +259,26 @@
 				}
 			}
 			//箭头宽
-			var arrowLength = 11;
+			var arrowLength =11;
 			//箭头高
 			var arrowHeight = 8;
 			//箭头底边中心点
-			var bottomCenterY = targetY - arrowLength * Math.sin(angle);
-			var bottomCenterX = targetX - arrowLength * Math.cos(angle);
-			if (x < 0) {
-			    bottomCenterY = targetY + arrowLength * Math.sin(angle);
-			    bottomCenterX = targetX + arrowLength * Math.cos(angle);
-			}
-			//箭头左坐标点
-			var bottomAngleAX = bottomCenterX - arrowHeight / 2 * Math.sin(angle);
-			var bottomAngleAY = bottomCenterY + arrowHeight / 2 * Math.cos(angle);
-			//箭头右坐标点
-			var bottomAngleBX = bottomCenterX + arrowHeight / 2 * Math.sin(angle);
-			var bottomAngleBY = bottomCenterY - arrowHeight / 2 * Math.cos(angle);
+			var bottomCenterY = targetY-arrowLength* Math.sin(angle);
+	 	    var bottomCenterX = targetX-arrowLength* Math.cos(angle);
+	 	    //箭头左坐标点
+	 	    var bottomAngleAX =  bottomCenterX-arrowHeight/2 * Math.sin(angle);
+	 	    var bottomAngleAY =  bottomCenterY+arrowHeight/2 * Math.cos(angle);
+	 	    //箭头右坐标点
+	 	    var bottomAngleBX =  bottomCenterX+arrowHeight/2 * Math.sin(angle);
+	 	    var bottomAngleBY =  bottomCenterY-arrowHeight/2 * Math.cos(angle);
 			//箭头坐标拼接
-			var arrowPath = 'M ' + targetX + ' ' + targetY + ' L ' + bottomAngleAX + ' ' + bottomAngleAY + ' L ' + bottomAngleBX + ' ' + bottomAngleBY + 'z';
-			//绘制箭头
-			var arrow = paper.path(arrowPath);
-			//箭头渲染颜色
-			this.lineColor(arrow, true);
+	 		var arrowPath = 'M '+targetX+' '+targetY
+	 		+' L '+bottomAngleAX+' '+bottomAngleAY
+	 		+' L '+bottomAngleBX+' '+bottomAngleBY+'z';
+	 		//绘制箭头
+	 		var arrow = paper.path(arrowPath);
+	 		//箭头渲染颜色
+	 		this.lineColor(arrow , true);
 		},
 		/**
 		 * [节点覆盖蒙层]
@@ -309,8 +288,7 @@
 		 *    status = 3   已办节点
 		 */
 		execute : function(paper ,shape){
-			var opt = this.option,
-				status = parseInt(shape.properties.status ,10);
+			var status = parseInt(shape.properties.status ,10);
 			if(status > 1){
 				var position = shape.bounds.upperLeft;
 				var radius = function(){
@@ -322,60 +300,21 @@
 				}();
 				//绘制蒙层
 				var matte = paper.rect(
-					position.x + (radius == 10 ? 1 : 4), 
-					position.y + (radius == 10 ? 1 : 4), 
-					opt.width - (radius == 10 ? 2 : 8), 
-					opt.height - (radius == 10 ? 2 : 8), 
+					position.x+(radius == 10?1:4), 
+					position.y+(radius == 10?1:4), 
+					WorkflowHistory.WIDTH-(radius == 10?2:8), 
+					WorkflowHistory.HEIGHT-(radius == 10?2:8), 
 					radius
 				);
-			
 				//为蒙层添加颜色
 				matte.attr({
-					'fill': opt.statusColors[status - 1],
+					'fill': WorkflowHistory.statusColors[status - 1],
 					'stroke' : 'none',
 					'fill-opacity' : .3
 				});
-				if(status === 2){
-					this.glow(matte);
-				}
-			}
-		},
-		//待办节点的蒙层动画
-		glow: function(matte) {
-			var opt = this.option,
-			//创建一个发光的蒙层
-			glow = matte.glow({
-				color: this.option.statusColors[1],
-    			width: 20
-			}),
-			//定义动画
-			anim = Raphael.animation({
-				"stroke": opt.glow
-			}, 1000);
-			//设置动画最大值,一直反复执行
-			anim = anim.repeat(Infinity);
-			//给发光添加动画
-			glow.animate(anim);
-		},
-		util: {
-			extend: function(target){
-			    var target = Object(target);
-				for (var index = 1; index < arguments.length; index++) {
-				    var source = arguments[index];
-				    if (source != null) {
-				        for (var key in source) {
-				            if (Object.prototype.hasOwnProperty.call(source, key)) {
-				                target[key] = source[key];
-				            }
-				        }
-				    }
-				}
-				return target;
 			}
 		}
 	}
 	//暴露给外部
-	window.createHistory = function(option){
-		return new WorkflowHistory(option);
-	};
+	window.WorkflowHistory = WorkflowHistory;
 })();

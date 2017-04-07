@@ -13,9 +13,16 @@
 	<script type="text/javascript" src="workflowHistory.js"></script>
 	<script type="text/javascript">
 		window.onload = function(){
-			//初始化
+			/**
+			 * 流程历史
+			 *
+			 * skin有2个值  designer 和 1,2
+			 */
 			createHistory({
-				el : 'workflowHistoryContainer'
+				el : 'workflowHistoryContainer',
+				skin: '3',
+				statusColors: ['' ,'black' ,'#d3edd4'],
+				glow: 'green'
 			});
 		}
 	</script>
