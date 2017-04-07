@@ -19,8 +19,10 @@
 				width: 58,				//节点的宽度
 				height: 58,				//节点的高度
 				statusColors: ['' ,'#fbd136' ,'#d3edd4'], //流程状态的颜色
-				skin: 'designer',			//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
-				glow: '#ea9999'			//待办节点发光颜色, 基础颜色是statusColors[1]
+				skin: 'designer',		//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
+				glow: '#ea9999',		//待办节点发光颜色, 基础颜色是statusColors[1]
+				glowTime: 1000,			//蒙层光环单次执行闪烁时间
+				glowWidth: 20			//蒙层光环宽度
 			} ,option);
 
 			this.getData(this.option.el);
@@ -284,6 +286,7 @@
 			//箭头底边中心点
 			var bottomCenterY = targetY - arrowLength * Math.sin(angle);
 			var bottomCenterX = targetX - arrowLength * Math.cos(angle);
+			//x小于0则证明角度大于180° 取反坐标
 			if (x < 0) {
 			    bottomCenterY = targetY + arrowLength * Math.sin(angle);
 			    bottomCenterX = targetX + arrowLength * Math.cos(angle);
@@ -346,18 +349,20 @@
 			//创建一个发光的蒙层
 			glow = matte.glow({
 				color: this.option.statusColors[1],
-    			width: 20
+    			width: opt.glowWidth
 			}),
 			//定义动画
 			anim = Raphael.animation({
 				"stroke": opt.glow
-			}, 1000);
+			}, opt.glowTime);
 			//设置动画最大值,一直反复执行
 			anim = anim.repeat(Infinity);
 			//给发光添加动画
 			glow.animate(anim);
 		},
+		//工具方法
 		util: {
+			//扩展方法   Object.assign
 			extend: function(target){
 			    var target = Object(target);
 				for (var index = 1; index < arguments.length; index++) {
