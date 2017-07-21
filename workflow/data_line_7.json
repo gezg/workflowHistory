@@ -1,0 +1,1551 @@
+{
+    "resourceId": "ac97d6c2c1ee40c0a940c25990b9ad9b",
+    "properties": {
+        "process_id": "yanshi",
+        "process_name": "演示流程",
+        "process_org": {
+            "id": "all",
+            "name": "通用流程"
+        },
+        "process_type": {
+            "id": "61a75752f3404baea4431f76d6fc31dd",
+            "name": "发文"
+        },
+        "form_apply": {
+            "id": "93fb8d6e91a84f108f1b961236d4e7c2",
+            "name": "发文"
+        },
+        "administrator": "",
+        "signaldefinitions": "",
+        "exceed": {
+            "type": "natural",
+            "days": "1"
+        },
+        "exceed_mode": {
+            "type": "stop",
+            "event": ""
+        },
+        "namespace": "http://www.activiti.org/processdef"
+    },
+    "stencil": {
+        "id": "BPMNDiagram"
+    },
+    "childShapes": [
+        {
+            "resourceId": "sid-57DF45A9-965F-4D2A-98D8-6090ED130316",
+            "properties": {
+                "overrideid": "startnoneevent1",
+                "name": "开始1",
+                "transactor": "",
+                "operation": {
+                    "buttons": {
+                        "todoSystemList": [
+                            {
+                                "id": 1,
+                                "name": "提交",
+                                "selected": true
+                            },
+                            {
+                                "id": 2,
+                                "name": "暂存",
+                                "selected": false
+                            },
+                            {
+                                "id": 3,
+                                "name": "退回",
+                                "selected": false
+                            },
+                            {
+                                "id": 4,
+                                "name": "转办",
+                                "selected": false
+                            },
+                            {
+                                "id": 5,
+                                "name": "跳转",
+                                "selected": false
+                            },
+                            {
+                                "id": 6,
+                                "name": "终止",
+                                "selected": false
+                            }
+                        ],
+                        "haveSystemList": [
+                            {
+                                "id": 1001,
+                                "name": "拿回",
+                                "selected": false
+                            }
+                        ]
+                    }
+                },
+                "field_attribute": {
+                    "version": 1495159027075,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                },
+                "event_apply": []
+            },
+            "stencil": {
+                "id": "StartNoneEvent"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-7C5C0AB0-A89D-4FCE-868A-A35F70B4A773"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 152.515625,
+                    "y": 243
+                },
+                "upperLeft": {
+                    "x": 98.515625,
+                    "y": 189
+                }
+            },
+            "dockers": []
+        },
+        {
+            "resourceId": "sid-C52440B9-B26F-4B5A-8B22-A5A9A56E8C47",
+            "properties": {
+                "overrideid": "usertask1",
+                "name": "用户1",
+                "usertask_type": {
+                    "id": 1,
+                    "name": "单选"
+                },
+                "transactor_type": {
+                    "id": "1001",
+                    "name": "单人签核"
+                },
+                "candidate": {
+                    "id": 1,
+                    "name": "否"
+                },
+                "exceed": {
+                    "type": "natural",
+                    "days": ""
+                },
+                "exceed_mode": {
+                    "type": "stop",
+                    "event": ""
+                },
+                "transactor": "",
+                "operation": {
+                    "buttons": {
+                        "todoSystemList": [
+                            {
+                                "id": 1,
+                                "name": "提交",
+                                "selected": true,
+                                "$$hashKey": "08L"
+                            },
+                            {
+                                "id": 2,
+                                "name": "暂存",
+                                "selected": false,
+                                "$$hashKey": "08M"
+                            },
+                            {
+                                "id": 3,
+                                "name": "退回",
+                                "selected": false,
+                                "$$hashKey": "08N"
+                            },
+                            {
+                                "id": 4,
+                                "name": "转办",
+                                "selected": false,
+                                "$$hashKey": "08O"
+                            },
+                            {
+                                "id": 5,
+                                "name": "跳转",
+                                "selected": false,
+                                "$$hashKey": "08P"
+                            },
+                            {
+                                "id": 6,
+                                "name": "终止",
+                                "selected": false,
+                                "$$hashKey": "08Q"
+                            }
+                        ],
+                        "haveSystemList": [
+                            {
+                                "id": 1001,
+                                "name": "拿回",
+                                "selected": false
+                            }
+                        ]
+                    },
+                    "nodes": {
+                        "operateBackNode": [
+                            {
+                                "id": "usertask2",
+                                "name": "用户2",
+                                "selected": false,
+                                "$$hashKey": "08X"
+                            }
+                        ],
+                        "operateAsternNode": []
+                    }
+                },
+                "field_attribute": {
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly",
+                            "$$hashKey": "095"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "edit",
+                            "$$hashKey": "093"
+                        }
+                    ],
+                    "version": 1495159027075
+                },
+                "event_apply": [],
+                "multiinstance_type": "None",
+                "isforcompensation": "false"
+            },
+            "stencil": {
+                "id": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-BB4E6625-541D-4151-8416-E2CE1C87AF9C"
+                },
+                {
+                    "resourceId": "sid-F71D737F-14AB-4CDA-A308-DE0A64C36308"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-7C5C0AB0-A89D-4FCE-868A-A35F70B4A773"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 342.515625,
+                    "y": 255
+                },
+                "upperLeft": {
+                    "x": 276.515625,
+                    "y": 177
+                }
+            },
+            "dockers": []
+        },
+        {
+            "resourceId": "sid-5F33953C-6728-460E-81EA-BBE598366E08",
+            "properties": {
+                "overrideid": "usertask2",
+                "name": "用户2",
+                "usertask_type": {
+                    "id": 1,
+                    "name": "单选"
+                },
+                "transactor_type": {
+                    "id": "1001",
+                    "name": "单人签核"
+                },
+                "candidate": {
+                    "id": 1,
+                    "name": "否"
+                },
+                "exceed": "",
+                "exceed_mode": {
+                    "type": "stop",
+                    "event": ""
+                },
+                "transactor": "",
+                "operation": {
+                    "buttons": {
+                        "todoSystemList": [
+                            {
+                                "id": 1,
+                                "name": "提交",
+                                "selected": true,
+                                "$$hashKey": "059"
+                            },
+                            {
+                                "id": 2,
+                                "name": "暂存",
+                                "selected": false,
+                                "$$hashKey": "05A"
+                            },
+                            {
+                                "id": 3,
+                                "name": "退回",
+                                "selected": false,
+                                "$$hashKey": "05B"
+                            },
+                            {
+                                "id": 4,
+                                "name": "转办",
+                                "selected": false,
+                                "$$hashKey": "05C"
+                            },
+                            {
+                                "id": 5,
+                                "name": "跳转",
+                                "selected": false,
+                                "$$hashKey": "05D"
+                            },
+                            {
+                                "id": 6,
+                                "name": "终止",
+                                "selected": false,
+                                "$$hashKey": "05E"
+                            }
+                        ],
+                        "haveSystemList": [
+                            {
+                                "id": 1001,
+                                "name": "拿回",
+                                "selected": false
+                            }
+                        ]
+                    },
+                    "nodes": {
+                        "operateBackNode": [
+                            {
+                                "id": "usertask1",
+                                "name": "用户1",
+                                "selected": false,
+                                "$$hashKey": "05L"
+                            }
+                        ],
+                        "operateAsternNode": [
+                            {
+                                "id": "usertask1",
+                                "name": "用户1",
+                                "selected": false,
+                                "$$hashKey": "05N"
+                            }
+                        ]
+                    }
+                },
+                "field_attribute": {
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "orderBy": null,
+                            "dbtype": "mysql",
+                            "privilege": "readonly",
+                            "$$hashKey": "052"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "orderBy": null,
+                            "dbtype": "mysql",
+                            "privilege": "readonly",
+                            "$$hashKey": "050"
+                        }
+                    ],
+                    "version": 1496726322663
+                },
+                "event_apply": [],
+                "multiinstance_type": "None",
+                "isforcompensation": "false"
+            },
+            "stencil": {
+                "id": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-FFD9A76B-0EED-4A24-954B-EB6576BCC20E"
+                },
+                {
+                    "resourceId": "sid-3E914AF2-51D8-4E3C-AA74-64DCCB7B0FD7"
+                },
+                {
+                    "resourceId": "sid-E04D5483-85D2-446F-97D3-693D3E3D6674"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-BB4E6625-541D-4151-8416-E2CE1C87AF9C"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 506.515625,
+                    "y": 255
+                },
+                "upperLeft": {
+                    "x": 440.515625,
+                    "y": 177
+                }
+            },
+            "dockers": []
+        },
+        {
+            "resourceId": "sid-A286472C-486C-4654-B25E-591835BCB08A",
+            "properties": {
+                "overrideid": "endnoneevent1",
+                "name": "结束1",
+                "field_attribute": {
+                    "version": 1495159027075,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                },
+                "event_apply": []
+            },
+            "stencil": {
+                "id": "EndNoneEvent"
+            },
+            "childShapes": [],
+            "outgoing": [],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-FFD9A76B-0EED-4A24-954B-EB6576BCC20E"
+                },
+                {
+                    "resourceId": "sid-D5A92DEF-6AE5-4938-BCBE-9250A4A3E533"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 519,
+                    "y": 474
+                },
+                "upperLeft": {
+                    "x": 465,
+                    "y": 420
+                }
+            },
+            "dockers": []
+        },
+        {
+            "resourceId": "sid-FFD9A76B-0EED-4A24-954B-EB6576BCC20E",
+            "properties": {
+                "overrideid": "sequenceflow3",
+                "name": "路由3",
+                "transactor": "",
+                "relation": "",
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1495159027075,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-A286472C-486C-4654-B25E-591835BCB08A"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-5F33953C-6728-460E-81EA-BBE598366E08"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 489.56098479156435,
+                    "y": 419.75398283522065
+                },
+                "upperLeft": {
+                    "x": 473.29033356781065,
+                    "y": 237.99601716477937
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 27,
+                    "y": 27
+                }
+            ],
+            "target": {
+                "resourceId": "sid-A286472C-486C-4654-B25E-591835BCB08A"
+            },
+            "line": "M473.29033356781065 237.99601716477937L489.56098479156435 419.75398283522065 ",
+            "textPath": [
+                "rotate(84.88461826191826 473 237)",
+                "481",
+                "229"
+            ]
+        },
+        {
+            "resourceId": "sid-7C5C0AB0-A89D-4FCE-868A-A35F70B4A773",
+            "properties": {
+                "overrideid": "sequenceflow1",
+                "name": "路由1",
+                "transactor": "",
+                "relation": [
+                    {
+                        "id": "addLeader",
+                        "typeName": "直接领导"
+                    }
+                ],
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1495159027075,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-C52440B9-B26F-4B5A-8B22-A5A9A56E8C47"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-57DF45A9-965F-4D2A-98D8-6090ED130316"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 275.8215464383313,
+                    "y": 214.61440009914355
+                },
+                "upperLeft": {
+                    "x": 153.38157856166868,
+                    "y": 208.52622490085645
+                }
+            },
+            "dockers": [
+                {
+                    "x": 27,
+                    "y": 27
+                },
+                {
+                    "x": 30,
+                    "y": 30
+                }
+            ],
+            "target": {
+                "resourceId": "sid-C52440B9-B26F-4B5A-8B22-A5A9A56E8C47"
+            },
+            "line": "M153.38157856166868 214.61440009914355L275.8215464383313 208.52622490085645 ",
+            "textPath": [
+                "rotate(357.1533830841839 153 214)",
+                "161",
+                "206"
+            ]
+        },
+        {
+            "resourceId": "sid-BB4E6625-541D-4151-8416-E2CE1C87AF9C",
+            "properties": {
+                "overrideid": "sequenceflow2",
+                "name": "路由2",
+                "transactor": "",
+                "relation": [
+                    {
+                        "id": "aaaa",
+                        "typeName": "aaaa"
+                    },
+                    {
+                        "id": "aaaa.gg.g.g.g",
+                        "typeName": "bbb"
+                    }
+                ],
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1495159027075,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-5F33953C-6728-460E-81EA-BBE598366E08"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-C52440B9-B26F-4B5A-8B22-A5A9A56E8C47"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 440.046875,
+                    "y": 207
+                },
+                "upperLeft": {
+                    "x": 336.984375,
+                    "y": 207
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 30,
+                    "y": 30
+                }
+            ],
+            "target": {
+                "resourceId": "sid-5F33953C-6728-460E-81EA-BBE598366E08"
+            },
+            "line": "M336.984375 207L440.046875 207 ",
+            "textPath": [
+                "rotate(360 336 207)",
+                "344",
+                "199"
+            ]
+        },
+        {
+            "resourceId": "sid-C4D23500-5EB8-447C-8072-0776F64EEEED",
+            "properties": {
+                "overrideid": "usertask3",
+                "name": "用户3",
+                "usertask_type": {
+                    "id": 1,
+                    "name": "单选"
+                },
+                "transactor_type": {
+                    "id": "1001",
+                    "name": "单人签核"
+                },
+                "candidate": {
+                    "id": 1,
+                    "name": "否"
+                },
+                "exceed": {
+                    "type": "natural",
+                    "days": ""
+                },
+                "exceed_mode": {
+                    "type": "stop",
+                    "event": ""
+                },
+                "transactor": "",
+                "operation": {
+                    "buttons": {
+                        "todoSystemList": [
+                            {
+                                "id": 1,
+                                "name": "提交",
+                                "selected": true
+                            },
+                            {
+                                "id": 2,
+                                "name": "暂存",
+                                "selected": false
+                            },
+                            {
+                                "id": 3,
+                                "name": "退回",
+                                "selected": false
+                            },
+                            {
+                                "id": 4,
+                                "name": "转办",
+                                "selected": false
+                            },
+                            {
+                                "id": 5,
+                                "name": "跳转",
+                                "selected": false
+                            },
+                            {
+                                "id": 6,
+                                "name": "终止",
+                                "selected": false
+                            },
+                            {
+                                "id": 7,
+                                "name": "暂停",
+                                "selected": false
+                            },
+                            {
+                                "id": 8,
+                                "name": "恢复",
+                                "selected": false
+                            }
+                        ],
+                        "haveSystemList": [
+                            {
+                                "id": 1001,
+                                "name": "拿回",
+                                "selected": false
+                            }
+                        ]
+                    }
+                },
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                },
+                "event_apply": [],
+                "multiinstance_type": "None",
+                "isforcompensation": "false"
+            },
+            "stencil": {
+                "id": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-EB21460E-8A67-4463-A041-D64DC6F6CF10"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-F71D737F-14AB-4CDA-A308-DE0A64C36308"
+                },
+                {
+                    "resourceId": "sid-3E914AF2-51D8-4E3C-AA74-64DCCB7B0FD7"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 876,
+                    "y": 198
+                },
+                "upperLeft": {
+                    "x": 810,
+                    "y": 120
+                }
+            },
+            "dockers": []
+        },
+        {
+            "resourceId": "sid-F71D737F-14AB-4CDA-A308-DE0A64C36308",
+            "properties": {
+                "overrideid": "sequenceflow4",
+                "name": "路由4",
+                "transactor": "",
+                "relation": "",
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-C4D23500-5EB8-447C-8072-0776F64EEEED"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-C52440B9-B26F-4B5A-8B22-A5A9A56E8C47"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 809.7290305128356,
+                    "y": 192.52530868272714
+                },
+                "upperLeft": {
+                    "x": 337.0969198964742,
+                    "y": 91
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 551.59375,
+                    "y": 91
+                },
+                {
+                    "x": 30,
+                    "y": 30
+                }
+            ],
+            "target": {
+                "resourceId": "sid-C4D23500-5EB8-447C-8072-0776F64EEEED"
+            },
+            "line": "M337.0969198964742 192.52530868272714L551.59375 91 L809.7290305128356 143.80739079079356 ",
+            "textPath": [
+                "rotate(334.670942229977 337 192)",
+                "345",
+                "184"
+            ]
+        },
+        {
+            "resourceId": "sid-3E914AF2-51D8-4E3C-AA74-64DCCB7B0FD7",
+            "properties": {
+                "overrideid": "sequenceflow5",
+                "name": "路由5",
+                "transactor": "",
+                "relation": "",
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-C4D23500-5EB8-447C-8072-0776F64EEEED"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-5F33953C-6728-460E-81EA-BBE598366E08"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 809.7104679877228,
+                    "y": 319
+                },
+                "upperLeft": {
+                    "x": 500.9574797322808,
+                    "y": 168.2682111964578
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 608.59375,
+                    "y": 319
+                },
+                {
+                    "x": 670.59375,
+                    "y": 207
+                },
+                {
+                    "x": 33,
+                    "y": 39
+                }
+            ],
+            "target": {
+                "resourceId": "sid-C4D23500-5EB8-447C-8072-0776F64EEEED"
+            },
+            "line": "M500.9574797322808 231.6924538554927L608.59375 319 L670.59375 207 L809.7104679877228 168.2682111964578 ",
+            "textPath": [
+                "rotate(39.046718160192654 500 231)",
+                "508",
+                "223"
+            ]
+        },
+        {
+            "resourceId": "sid-797CB7DD-18CA-49FD-A58D-BC28505B47C8",
+            "properties": {
+                "overrideid": "usertask4",
+                "name": "用户4",
+                "usertask_type": {
+                    "id": 1,
+                    "name": "单选"
+                },
+                "transactor_type": {
+                    "id": "1001",
+                    "name": "单人签核"
+                },
+                "candidate": {
+                    "id": 1,
+                    "name": "否"
+                },
+                "exceed": {
+                    "type": "natural",
+                    "days": ""
+                },
+                "exceed_mode": {
+                    "type": "stop",
+                    "event": ""
+                },
+                "transactor": "",
+                "operation": {
+                    "buttons": {
+                        "todoSystemList": [
+                            {
+                                "id": 1,
+                                "name": "提交",
+                                "selected": true
+                            },
+                            {
+                                "id": 2,
+                                "name": "暂存",
+                                "selected": false
+                            },
+                            {
+                                "id": 3,
+                                "name": "退回",
+                                "selected": false
+                            },
+                            {
+                                "id": 4,
+                                "name": "转办",
+                                "selected": false
+                            },
+                            {
+                                "id": 5,
+                                "name": "跳转",
+                                "selected": false
+                            },
+                            {
+                                "id": 6,
+                                "name": "终止",
+                                "selected": false
+                            },
+                            {
+                                "id": 7,
+                                "name": "暂停",
+                                "selected": false
+                            },
+                            {
+                                "id": 8,
+                                "name": "恢复",
+                                "selected": false
+                            }
+                        ],
+                        "haveSystemList": [
+                            {
+                                "id": 1001,
+                                "name": "拿回",
+                                "selected": false
+                            }
+                        ]
+                    }
+                },
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                },
+                "event_apply": [],
+                "multiinstance_type": "None",
+                "isforcompensation": "false"
+            },
+            "stencil": {
+                "id": "UserTask"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-D5A92DEF-6AE5-4938-BCBE-9250A4A3E533"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-E04D5483-85D2-446F-97D3-693D3E3D6674"
+                },
+                {
+                    "resourceId": "sid-EB21460E-8A67-4463-A041-D64DC6F6CF10"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 876.59375,
+                    "y": 408
+                },
+                "upperLeft": {
+                    "x": 810.59375,
+                    "y": 330
+                }
+            },
+            "dockers": []
+        },
+        {
+            "resourceId": "sid-E04D5483-85D2-446F-97D3-693D3E3D6674",
+            "properties": {
+                "overrideid": "sequenceflow6",
+                "name": "路由6",
+                "transactor": "",
+                "relation": "",
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-797CB7DD-18CA-49FD-A58D-BC28505B47C8"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-5F33953C-6728-460E-81EA-BBE598366E08"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 1148.59375,
+                    "y": 330.6882196891564
+                },
+                "upperLeft": {
+                    "x": 412.59375,
+                    "y": 34
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 412.59375,
+                    "y": 34
+                },
+                {
+                    "x": 1148.59375,
+                    "y": 61
+                },
+                {
+                    "x": 30,
+                    "y": 30
+                }
+            ],
+            "target": {
+                "resourceId": "sid-797CB7DD-18CA-49FD-A58D-BC28505B47C8"
+            },
+            "line": "M460.24281626351353 176.31736219844132L412.59375 34 L1148.59375 61 L870.787824701471 330.6882196891564 ",
+            "textPath": [
+                "rotate(71.48901478924391 460 176)",
+                "452",
+                "168"
+            ]
+        },
+        {
+            "resourceId": "sid-EB21460E-8A67-4463-A041-D64DC6F6CF10",
+            "properties": {
+                "overrideid": "sequenceflow7",
+                "name": "路由7",
+                "transactor": "",
+                "relation": "",
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-797CB7DD-18CA-49FD-A58D-BC28505B47C8"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-C4D23500-5EB8-447C-8072-0776F64EEEED"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 857.1348728839046,
+                    "y": 329.4086604888376
+                },
+                "upperLeft": {
+                    "x": 837.254120767809,
+                    "y": 180.516569138733
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 837.254120767809,
+                    "y": 221.2870886780051
+                },
+                {
+                    "x": 857.1348728839046,
+                    "y": 286.6435443390026
+                },
+                {
+                    "x": 33,
+                    "y": 39
+                }
+            ],
+            "target": {
+                "resourceId": "sid-797CB7DD-18CA-49FD-A58D-BC28505B47C8"
+            },
+            "line": "M838.8245443180566 180.516569138733L837.254120767809 221.2870886780051 L857.1348728839046 286.6435443390026 L850.1033938300577 329.4086604888376 ",
+            "textPath": [
+                "rotate(-87.79413698573785 838 180)",
+                "830",
+                "172"
+            ]
+        },
+        {
+            "resourceId": "sid-D5A92DEF-6AE5-4938-BCBE-9250A4A3E533",
+            "properties": {
+                "overrideid": "sequenceflow8",
+                "name": "路由8",
+                "transactor": "",
+                "relation": "",
+                "routing_conditions": "",
+                "event_apply": [],
+                "defaultflow": "false",
+                "field_attribute": {
+                    "version": 1496892953669,
+                    "have": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ],
+                    "todo": [
+                        {
+                            "id": "411266a2b97949a88030b6b434bdea38",
+                            "formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+                            "itemName": "zhubansuggestTextareaContent",
+                            "columnName": "",
+                            "formName": "zhubansuggestTextareaContent",
+                            "type": 12,
+                            "typeLabel": "意见域",
+                            "dbtype": "mysql",
+                            "orderBy": null,
+                            "privilege": "readonly"
+                        }
+                    ]
+                }
+            },
+            "stencil": {
+                "id": "SequenceFlow"
+            },
+            "childShapes": [],
+            "outgoing": [
+                {
+                    "resourceId": "sid-A286472C-486C-4654-B25E-591835BCB08A"
+                }
+            ],
+            "pointToMy": [
+                {
+                    "resourceId": "sid-797CB7DD-18CA-49FD-A58D-BC28505B47C8"
+                }
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 810.3321197607762,
+                    "y": 461
+                },
+                "upperLeft": {
+                    "x": 516.6481611647032,
+                    "y": 388.3002282792741
+                }
+            },
+            "dockers": [
+                {
+                    "x": 30,
+                    "y": 30
+                },
+                {
+                    "x": 732.59375,
+                    "y": 461
+                },
+                {
+                    "x": 618.59375,
+                    "y": 390
+                },
+                {
+                    "x": 27,
+                    "y": 27
+                }
+            ],
+            "target": {
+                "resourceId": "sid-A286472C-486C-4654-B25E-591835BCB08A"
+            },
+            "line": "M810.3321197607762 388.3002282792741L732.59375 461 L618.59375 390 L516.6481611647032 435.9019387893314 ",
+            "textPath": [
+                "rotate(-43.08171967485319 810 388)",
+                "802",
+                "380"
+            ]
+        }
+    ],
+    "bounds": {
+        "lowerRight": {
+            "x": 1569,
+            "y": 1050
+        },
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "stencilset": {
+        "url": "stencilsets/bpmn2.0/bpmn2.0.json",
+        "namespace": "http://b3mn.org/stencilset/bpmn2.0#"
+    },
+    "ssextensions": []
+}

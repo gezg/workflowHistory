@@ -21,7 +21,7 @@
 				width: 58,				//节点的宽度
 				height: 58,				//节点的高度
 				statusColors: ['' ,'#fbd136' ,'#d3edd4'], //流程状态的颜色
-				skin: '2',				//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
+				skin: '1',				//流程节点的样式 modern和 designer两个参数,designer和设计器样式相同
 				glowColor: '#ea9999',	//待办节点发光颜色, 基础颜色是statusColors[1]
 				glowTime: 1000,			//蒙层光环单次执行闪烁时间
 				glowWidth: 20,			//蒙层光环宽度

@@ -8,9 +8,9 @@
     Opera 9.5+ 
     Internet Explorer 6.0+
 
-#### 使用原生js编写,不依赖任何库
+#### 使用原生js编写,不依赖jQuery
 ```javascript
-  new WorkflowHistory('workflowHistoryContainer');
+  new WorkflowHistory(Object config);
 ```
 ----------------------
 ### 前端基于gulp构建的服务器
