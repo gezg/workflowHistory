@@ -158,7 +158,7 @@
 					//截取获得路由绘制终点的坐标
 					var ds = shape.line.split('L');
 					//路由的位置
-					var position = ds[ds.length-1].split(' ');
+					var position = ds[ds.length-1].replace(/(^\s*)/g,'').split(' ');
 					//绘制箭头
 					this.arrow(paper ,diffX ,diffY ,Number(position[0]) ,Number(position[1]) ,shape);
 					//绘制路由线
